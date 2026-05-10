@@ -92,3 +92,44 @@ When you subtract, everything from 0 to 4 cancels out because both sets contain 
 see [leet code binary sum](https://leetcode.com/problems/binary-subarrays-with-sum/)
 
 The most natural way to solve this problem is with prefix sum though.
+
+### Technique - Fixed window
+A few problems use the concept of a fixed window where the problem mentions that we want a constraint with a maximum sub arrays equal to `k`.
+
+```
+E.G: Given an integer array nums and an integer k, find the sum of the subarray with the largest sum whose length is k.
+```
+
+These questions are easy.
+
+- initialize pointer, 
+- create a first loop that moves to the provided length k.
+- Accumulate answer or current items at this length based on question.
+- Start a second loop to iterate from length k. This loop will remove from left and add to right one item per iteration.
+- Accumulate answer.
+- return ans.
+
+Sample code for the fixed window example above:
+
+```py
+def maxSumForK(nums: list[int], k: int)-> int:
+    curr = 0
+    maxSum = 0
+
+    for index in range(k):
+        curr += nums[index]
+    
+    maxSum = curr
+    
+    for index in range(k, len(nums)):
+        curr += nums[index]
+        curr -= nums[index - k]
+
+        maxSum = max(maxSum, curr/k)
+    
+    return maxSum
+```
+
+## Tips
+- Always ensure to not run operations on the full window such as sum or similar. this can get your algo to `O(n**2)`. Instead use a global scoped variable to track. instead of `sum(nums[i:j])`, use `curr += nums[right]`.
+Always avoid operations on the full window, find a way to track items as w expand and remove as we shrink to keep algo O(n).
