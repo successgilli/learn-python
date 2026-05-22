@@ -100,3 +100,6 @@ So at this point, since distance is equal, at same speed, they should meet at th
 - the point of meeting is the start of the cycle.
 
 These and many more similar problems simply leverage the fast and slow pointers concept.
+
+## Tips
+- For reversal, we need the `prev` not `next`. Hold a pointer to `prev` in combination to `current head`.
