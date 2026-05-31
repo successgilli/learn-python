@@ -1,23 +1,20 @@
-from flask import Flask, request, current_app, make_response, abort
+from flask import Flask, make_response, render_template
 
 
 app = Flask(__name__)
 
 def index() -> str:
-    return '<h1>New app </h1>'
+    return render_template('index.html')
 
 app.add_url_rule('/', 'index', index)
 
-@app.route('/user/<name>')
+@app.get('/user/<name>')
 def username(name: str) -> tuple[str, int]:
-    userAgent = request.headers.get('user-agent')
-    response = make_response('<h1>This document carries a cookie {}!</h1>'.format(userAgent))
-    
-    abort(403)
-    response.status_code = 500
-    response.headers = {}
-    return response
+    return render_template('user.html', name=name)
 
+@app.errorhandler(404)
+def app_error_404(e):
+    return make_response(render_template('404.html', error=e), 404)
 
 if __name__ == '__main__':
     app.run(debug=True)

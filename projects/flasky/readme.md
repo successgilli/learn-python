@@ -1,4 +1,4 @@
-## Notes
+## Flask webserver
 - Flask comes with a development server that can be started with `flask run`
 - This command looks for the flask app instance contained in the script file set by the env variable `FLASK_APP`.
 - Set this variable in the virtual env by running `export FLASK_APP=app.py` where `app.py` is simply the file that holds your flask instance. It can be any name you choose.
@@ -23,3 +23,7 @@ if __name__ == '__main__':
     2) `current_app` is the context object for the current application
     3) `session` is a dictionary for holding session data that should be remembered across requests
     4) `request` is the encapsulation of the http request sent by the client.
+- There are request hooks you can use to run handler before and after request.
+
+## Templates
+Flask uses the Jinja templating engine for rendering static assets.
