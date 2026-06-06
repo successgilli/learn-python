@@ -27,3 +27,14 @@ if __name__ == '__main__':
 
 ## Templates
 Flask uses the Jinja templating engine for rendering static assets.
+
+## Flask shell
+- Flask applications can be accessed via the terminal with `flask shell` which will open an environment that allows you to interact with the flask application. You can import like you would in a flask app variables, db objects and call/interact with them like you would programmatically.
+- In the shell, you will have to import object each time you start the shell. Flask shell offers decorators that allow you to specify objects you want exposed out of the box each time you open the shell. With this, those objects are readily available for access and usage without having to import them each time in the shell.
+
+```py
+@app.shell_context_processor
+def shell_context():
+    return dict(db=db, User=User, Role=Role)
+```
+
