@@ -24,6 +24,7 @@ if __name__ == '__main__':
     3) `session` is a dictionary for holding session data that should be remembered across requests
     4) `request` is the encapsulation of the http request sent by the client.
 - There are request hooks you can use to run handler before and after request.
+- Use `pip freeze > requirements.txt` to record the packages/versions currently used by the app. This can be used to reinstall exact package versions in a new env with `pip install -r requirements.txt`
 
 ## Templates
 Flask uses the Jinja templating engine for rendering static assets.
