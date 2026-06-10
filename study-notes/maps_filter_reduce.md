@@ -1,3 +1,9 @@
+## Maps, Filters and Reduce
+- Python provides a built-in `maps` function to create a map from an iterable. These basically act as generators
+- Python provides a built-in `filter` function to create a filter for an iterable. These basically act as generators
+- We also have reduce from `functools`
+
+```py
 from functools import reduce
 
 items = [1,3,4,5]
@@ -31,3 +37,18 @@ def redItem(result: dict, item: int) -> dict:
 reducedItems = reduce(redItem, items, {})
 
 print(reducedItems)
+
+# --- OUTPUT ---
+#
+# [1, 3, 4, 5]
+# --- Maps ---
+# 1
+# 27
+# 256
+# 3125
+# --- Filter ---
+# 4
+# 5
+# -- Reduce to an object ---
+# {1: 1, 3: 27, 4: 256, 5: 3125}
+```
