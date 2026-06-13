@@ -1,33 +1,6 @@
-from functools import reduce
+import asyncio
 
-items = [1,3,4,5]
+async def main():
+    print('run')
 
-print(items)
-
-# -- Maps ---
-def mapItem(item):
-    return item**item
-
-print('--- Maps ---')
-mappedItems = map(mapItem, items)
-
-for i in mappedItems:
-    print(i)
-
-# -- Filter ---
-print('--- Filter ---')
-filteredItems = filter(lambda x: x**x > 100, items)
-
-for i in filteredItems:
-    print(i)
-
-# -- Reduce ---
-print('-- Reduce to an object ---')
-
-def redItem(result: dict, item: int) -> dict:
-    result[item] = item**item
-    return result
-
-reducedItems = reduce(redItem, items, {})
-
-print(reducedItems)
+asyncio.run(main())
