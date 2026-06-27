@@ -141,5 +141,4 @@ class TextType(Base):
 
 
 print(Base._registry['text']().do())
-
 ```
