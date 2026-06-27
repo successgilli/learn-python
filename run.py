@@ -1,19 +1,16 @@
-from functools import wraps
-from typing import Callable
 
-def trace_decorator_with_msg(msg=''):
-    def wrapper(func: Callable):
-        @wraps(func)
-        def funcArgs(*args, **kwargs):
-            print(msg)
-            return func(*args, **kwargs)
+class Base:
+    _registry: dict[str, type] = {}
 
-        return funcArgs
+    def __init_subclass__(cls):
+        print('labala')
+        Base._registry[cls.mimetype] = cls
 
-    return wrapper
+class TextType(Base):
+    mimetype = 'text'
 
-@trace_decorator_with_msg('labalala')
-def addItem(a,b):
-    return a + b
+    def do(self):
+        print(f'I am {TextType.mimetype}')
 
-print(addItem(2,4), addItem.__name__)
+
+print(Base._registry['text']().do())

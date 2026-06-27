@@ -97,3 +97,49 @@ def add(x,y):
 
 print(add(2, 4))
 ```
+
+### Class decorators
+These are decorators that accept a class and returns a class.
+- Class decorators can be used to modify the class in which ever way you intend. Add, a new method, modify existing method, etc.
+```py
+registry = {}
+
+def decorate_class(cls):
+    registry[cls.mimetype] = cls
+    return cls
+
+@decorate_class
+class TextType:
+    mimetype = 'text'
+
+
+print(registry['text'])
+```
+
+#### Supervised inheritance
+Instead of class decorators, we could use a powerful provision of classes called the `__init_subclass__` which is a method that runs when a class is `subclassed`.
+
+This method is defined on a class and will run when it is inherited by a parent and that parent is initialized.
+
+Since this is a class method, it accepts a class `cls` as its first param and as such does exactly what we would want with a class decorator.
+
+Below is a rewrite of what we would do with class decorators using supervised inheritance.
+
+```py
+class Base:
+    _registry: dict[str, type] = {}
+
+    def __init_subclass__(cls):
+        print('labala')
+        Base._registry[cls.mimetype] = cls
+
+class TextType(Base):
+    mimetype = 'text'
+
+    def do(self):
+        print(f'I am {TextType.mimetype}')
+
+
+print(Base._registry['text']().do())
+
+```
