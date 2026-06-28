@@ -1,16 +1,37 @@
+import sys
 
-class Base:
-    _registry: dict[str, type] = {}
+class A:
+    __slots__ = ('name', 'title')
+    def __init__(self, name, title):
+        self.name = name
+        self.title = title
 
-    def __init_subclass__(cls):
-        print('labala')
-        Base._registry[cls.mimetype] = cls
+    def cry(self):
+        print('😭')
+    
+    def shout(self):
+        print('🤯')
+    
+    def greet(self):
+        print('Hello')
 
-class TextType(Base):
-    mimetype = 'text'
+class B:
+    def __init__(self, name, title):
+        self.name = name
+        self.title = title
 
-    def do(self):
-        print(f'I am {TextType.mimetype}')
-
-
-print(Base._registry['text']().do())
+    def cry(self):
+        print('😭')
+    
+    def shout(self):
+        print('🤯')
+    
+    def greet(self):
+        print('Hello')
+    
+a = A('Ben', 'Benito')
+b = B('Ben', 'Benito')
+print(A.__dict__)
+print(B.__dict__)
+print(f'Size of instance a is {sys.getsizeof(A)} bytes')
+print(f'Size of instance b is {sys.getsizeof(B)} bytes')
