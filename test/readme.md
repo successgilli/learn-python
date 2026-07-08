@@ -1,0 +1,12 @@
+## Learnings
+- `pytest` finds and runs test files which are identified by the files starting with `test_` or `_test`.
+- Test functions are functions starting with `test_`.
+- Test classes should be named `Test<Something>`
+- To run all tests in the current and subdirectories, simply call `pytest`
+- `pytest test_one.py` to run a single test suite
+- Run test in multiple files `pytest <filename> <filename>`
+- `pytest <dirname>` Starts in a particular directory (or more than one) and recursively searches for tests
+- `pytest test_one.py::test_failing` to run a specific test in a suite.
+- Skip tests using `@pytest.mark.skip()`
+- To skip all other tests except a specific match, use `pytest -k <matching name>`. E.G `pytest -k TestEquality`.
+- `pytest -k '<expression>'` can also be used with keywords such as `not`, `or`, `and` and `parenthesis`. E.G `pytest -k 'not test_with_fail'`
