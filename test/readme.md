@@ -47,3 +47,18 @@ test_count_initial.py
 - `conftest.py` file is an optional local plug-in file that can be used to hold fixtures. It can also contain setup or test hooks. This file is automatically read by `pytest` if exist and as a result, you do not need to import it.
 - `pytest` provides a way to know what fixtures are available and to what test/test files. `fixtures` can be defined in conftest files in same directory, or in parent directories up to the root of the test directory which can create a mess. To discover them, you can ask pytest with the command `pytest --fixtures` or `pytest --fixtures test_count_initial.py` or even pass a directory name.
 - `pytest --fixtures-per-test test_count_initial.py` will give you the fixtures used per test in that module. Useful for debugging.
+- `pytest` ships with helpful builtin fixtures you can use. See docs for more builtins:
+    - `Capsys` for capturing terminal outputs. Useful for asserting cli components
+    - `tmp_dir` and similar temp file utilities for using temporary directories, files and paths.
+    - `monkeypatch` for mocking and replacing objects in tests.
+- `pytest --fixtures` has defined builtin fixture definitions at the top of its output.
+    ```
+    cache -- .../_pytest/cacheprovider.py:560
+    Return a cache object that can persist state between testing sessions.
+
+    capsys -- .../_pytest/capture.py:1007
+        Enable text capturing of writes to ``sys.stdout`` and ``sys.stderr``.
+
+    ...
+    ```
+- 

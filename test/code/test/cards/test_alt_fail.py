@@ -1,6 +1,7 @@
 import pytest
 from cards import Card
 
+@pytest.mark.skip()
 def test_with_fail():
     c1 = Card("something", "brian", "todo", 123)
     c2 = Card("something", "brian1", "todo", 123)

@@ -4,15 +4,13 @@ import cards
 import pytest
 
 @pytest.fixture(scope='session')
-def db():
-    with TemporaryDirectory() as db_dir:
-        db_path = Path(db_dir)
-        db = cards.CardsDB(db_path)
+def db(tmp_path_factory: pytest.TempdirFactory):
+    db = cards.CardsDB(tmp_path_factory.mktemp('db'))
 
-        yield db
+    yield db
 
-        print('\n calling close')
-        db.close()
+    print('\n calling close')
+    db.close()
 
 @pytest.fixture(scope='function')
 def cards_db(db: cards.CardsDB):
