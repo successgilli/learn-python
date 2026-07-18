@@ -1,6 +1,8 @@
 import cards
 import pytest
 
+pytestmark = [pytest.mark.smoke, pytest.mark.coco] # Custom marker registers in pytest.ini file run with `-m smoke`
+
 @pytest.mark.parametrize(
         'input_state,expected_state',
         [

@@ -61,4 +61,11 @@ test_count_initial.py
 
     ...
     ```
-- 
+- Mark tests with a custom marker using `@pytest.mark.<marker_name>`. Ypu can then run it or such tests with `pytest -m <marker_name>`
+- If pytest sees `pytestmark` in a test module, it will apply the marks to all tests in that module. e.g 
+```py
+pytestmark = [pytest.mark.smoke, pytest.mark.coco] # Custom marker registers in pytest.ini file run with `-m smoke` or `-m coco`
+```
+- Declared markers can be registered in a `pytest.ini` file
+- You can use combinations such as `-m​​ ​​"finish and exception"`, `-m​​ ​​"(exception or smoke) and (not finish)"`, etc
+- `pytest --markers` will list available markers
