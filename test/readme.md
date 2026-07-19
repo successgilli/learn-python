@@ -69,3 +69,4 @@ pytestmark = [pytest.mark.smoke, pytest.mark.coco] # Custom marker registers in 
 - Declared markers can be registered in a `pytest.ini` file
 - You can use combinations such as `-m​​ ​​"finish and exception"`, `-m​​ ​​"(exception or smoke) and (not finish)"`, etc
 - `pytest --markers` will list available markers
+- `pip install pytest-cov` installs coverage for pytest
